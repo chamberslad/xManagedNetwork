@@ -13,9 +13,9 @@
   This document will be covering combination of using Managed Network resources like RouteTable(s), NSG(s), Peering(s), Flow(s), Monitorings within the Terrraform
 </h3>
 
-- [What’s In This Document 🔰](#whats-in-this-document-)
+- [What’s In This Document �](#whats-in-this-document-)
 - [Inputs of Managed Network](#inputs-of-managed-network)
-- [Parameters of Managed Network](#parameters-of-managed-network)
+- [Parameters of Managed Network 🌪️](#parameters-of-managed-network-️)
   - [ServiceId](#serviceid)
   - [EnvironmentInstanceId](#environmentinstanceid)
   - [InstanceId](#instanceid)
@@ -24,9 +24,9 @@
   - [vNetworkSettings](#vnetworksettings)
   - [vSubnetsSettings](#vsubnetssettings)
   - [MonitoringSettings](#monitoringsettings)
-- [Example of Managed Network Variables](#example-of-managed-network-variables)
+- [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
  
-## What’s In This Document 🔰
+## What’s In This Document 📖
 This document is intended  to explain custom Terraform Module for using Managed Network purpose. It will deploy fully configured and ready to use compliance virtual network for any purpose of using it. 
 
 You can create a virtual network with this module. Also you can manage these resources;
@@ -83,7 +83,7 @@ module "xManagedNetwork" {
 | `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. | # managed-network |
 
 
-## Parameters of Managed Network 
+## Parameters of Managed Network 🌪️
 
 ### ServiceId
 This parameters is referred to as the resource prefix and describes service names.
@@ -271,7 +271,7 @@ MonitoringSettings = {
 
 ```
 
-## Example of Managed Network Variables
+## Example of Managed Network Variables 📜 
 
 If you mind using xManaged Network terraform module for your subscription, you need required to amend **tfvars** file convenient to your configuration detail. Below-stated file is an example of tfvars.
 
