@@ -34,7 +34,11 @@ You can create a virtual network with this module. Also you can manage these res
 ☑️  Ability to control and manage DNS Settings on the Virtual Network <br>
 ☑️  Ability to control and manage creating Subnet(s) on the Virtual Network <br>
 ☑️  Ability to control creating NSG(s) per subnet-level on the Virtual Network <br>
+☑️  Ability to control and Ingress and Egress Rules of NSG per subnet-level on the Virtual Network <br>
 ☑️  Ability to control creating Routes in UDR(s) for aligning Transit Network Service and Internet Access Service <br>
+☑️  Ability to control creating Service Endpoint(s) per subnet-level on the Virtual Network <br>
+☑️  Ability to control creating Delegation per subnet-level on the Virtual Network <br>
+☑️  Ability to control creating Private Endpoint Policies per subnet-level on the Virtual Network <br>
 ☑️  Ability to deploy Managed Bastion Host on the Virtual Network <br>
 ☑️  Ability to control and manage DDoS protection attachment on the Virtual Network <br>
 ☑️  Ability to control and manage Network Flow Log(s) and Traffic Analytics on the Network Resources <br>
