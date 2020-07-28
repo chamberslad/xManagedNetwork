@@ -23,6 +23,8 @@
   - [Tags](#tags)
   - [vNetworkSettings](#vnetworksettings)
   - [vSubnetsSettings](#vsubnetssettings)
+  - [MonitoringSettings](#monitoringsettings)
+- [Example of Managed Network Variables](#example-of-managed-network-variables)
  
 ## What’s In This Document 🔰
 This document is intended  to explain custom Terraform Module for using Managed Network purpose. It will deploy fully configured and ready to use compliance virtual network for any purpose of using it. 
@@ -31,8 +33,9 @@ You can create a virtual network with this module. Also you can manage these res
 
 ☑️  Ability to control and managing DNS Settings on the Virtual Network <br>
 ☑️  Ability to control and managing creating Subnet(s) on the Virtual Network <br>
-☑️ Ability to control creating NSG(s) per subnet-level on the Virtual Network <br>
-☑️ Ability to control creating Routes in UDR(s) for aligning Transit Network Service and Internet Access Service <br>
+☑️  Ability to control creating NSG(s) per subnet-level on the Virtual Network <br>
+☑️  Ability to control creating Routes in UDR(s) for aligning Transit Network Service and Internet Access Service <br>
+☑️  Ability to deploy Managed Bastion Host on the Virtual Network <br>
 ☑️  Ability to control and configuring DDoS protection attachment on the Virtual Network <br>
 ☑️  Ability to control and configuring Network Flow Log(s) and Traffic Analytics on the Network Resources <br>
 🚩  Ability to control and configuring Diagnostics Logging Profile for Managed Network Resources to Storage Account <br>
@@ -235,5 +238,131 @@ vSubnetsSettings = {
     RequiredSecurityGroup = true
   }
 }
+
+```
+
+### MonitoringSettings
+This parameters is referred to properties of Monitoring Configuration.
+
+```hcl
+variable "MonitoringSettings" {
+ description = "This parameters is referred to properties of Monitoring Configuration.."
+}
+```
+
+Example
+
+```hcl
+
+MonitoringSettings = {
+    DiagnosticSettings = {
+      StorageAccountLog = false
+      LogAnalyticsSpace = false
+    }
+    NetworkFlowSettings = {
+      Retention = true
+      Period    = 14
+    }
+    TrafficAnalyticsSettings = {
+      Enabled = true
+    }
+  }
+
+```
+
+## Example of Managed Network Variables
+
+```hcl
+
+SubscriptionId = ""
+TenantId       = ""
+ClientId       = ""
+SecretKey      = ""
+
+##### Env Details #####
+
+ServiceId             = "xs101"
+EnvironmentInstanceId = "d01" # This could be t01 - p01  
+InstanceId            = "01"
+Region                = "West Europe"
+
+Tags = {
+  account      = "vstsaccount"
+  team_project = "VDC"
+}
+######  Env Details #####
+
+##### Network Details #####
+
+vNetworkSettings = {
+  vNetRange = ["10.10.20.0/24"] #[You can add multiple Ranges##]#
+  vDNSSettings = {
+    RequiredDNS = false
+    vDNSServers = ["10.0.0.20", "10.10.20.30"] #[You can add multiple DNS Server for your requirments or you might disable it]#
+  }
+  vNetPeeringSettings = {
+    RequiredInternetAccess = false
+    RequiredNetworkAccess  = false
+  }
+  RequiredBastionHost = true
+}
+
+##### Subnet Details #####
+vSubnetsSettings = {
+  "Subnet01" = {
+    Name                              = "BackendSubnet01"
+    Range                             = "10.10.20.0/28"
+    RequiredInernetAccess             = true
+    RequiredNetworkAccess             = true
+    RequiredSecurityGroup             = true
+    ServiceEndpoints                  = [] #[You can add multiple Service Endpoints for spesific Subnets "Microsoft.EventHub"]#
+    EnforcePrivateLinkEdpointPolicies = false
+    EnforcePrivateLinkServicePolicies = false
+    Delegation = {
+      Name = "AccessDelegation01"
+      ServiceDelegation = {
+        Name    = "Microsoft.ContainerInstance/containerGroups"
+        Actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      }
+    }
+    NSGIngress = [
+      # {"Name", "Priority", "Direction", "Action", "Protocol", "source_port_range(s)", "destination_port_range(s)", "source_address_prefix(s)", "destination_address_prefix(s)" },
+      ["DNS", "102", "Inbound", "Allow", "TCP", "53", "53", "*", "192.168.0.0/24"],
+      ["DNS", "102", "Inbound", "Allow", "TCP", "53", "53", "*", "192.168.1.21/32"],
+    ]
+    NSGEgress = [
+      # {"Name", "Priority", "Direction", "Action", "Protocol", "source_port_range(s)", "destination_port_range(s)", "source_address_prefix(s)", "destination_address_prefix(s)" },
+      # ["AllowAzureLoadBalancerInBound", "4095", "OutBound", "Allow", "*", "*", "*", "AzureLoadBalancer", "*"]
+    ]
+  },
+  "Subnet02" = {
+    Name                  = "AppSubnet01"
+    Range                 = "10.10.20.16/28"
+    RequiredInernetAccess = true
+    RequiredNetworkAccess = true
+    RequiredSecurityGroup = true
+  },
+  "Subnet03" = {
+    Name                  = "AppSubnet03"
+    Range                 = "10.10.20.32/28"
+    RequiredInernetAccess = true
+    RequiredNetworkAccess = true
+    RequiredSecurityGroup = true
+  }
+}
+
+MonitoringSettings = {
+    DiagnosticSettings = {
+      StorageAccountLog = false
+      LogAnalyticsSpace = false
+    }
+    NetworkFlowSettings = {
+      Retention = true
+      Period    = 14
+    }
+    TrafficAnalyticsSettings = {
+      Enabled = true
+    }
+  }
 
 ```
