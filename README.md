@@ -31,16 +31,17 @@ This document is intended  to explain custom Terraform Module for using Managed 
 
 You can create a virtual network with this module. Also you can manage these resources;
 
-☑️  Ability to control and managing DNS Settings on the Virtual Network <br>
-☑️  Ability to control and managing creating Subnet(s) on the Virtual Network <br>
+☑️  Ability to control and manage DNS Settings on the Virtual Network <br>
+☑️  Ability to control and manage creating Subnet(s) on the Virtual Network <br>
 ☑️  Ability to control creating NSG(s) per subnet-level on the Virtual Network <br>
 ☑️  Ability to control creating Routes in UDR(s) for aligning Transit Network Service and Internet Access Service <br>
 ☑️  Ability to deploy Managed Bastion Host on the Virtual Network <br>
-☑️  Ability to control and configuring DDoS protection attachment on the Virtual Network <br>
-☑️  Ability to control and configuring Network Flow Log(s) and Traffic Analytics on the Network Resources <br>
-🚩  Ability to control and configuring Diagnostics Logging Profile for Managed Network Resources to Storage Account <br>
-🚩  Ability to control and configuring Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
-🚩  Ability to control and configuring Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
+☑️  Ability to control and manage DDoS protection attachment on the Virtual Network <br>
+☑️  Ability to control and manage Network Flow Log(s) and Traffic Analytics on the Network Resources <br>
+🚩  Ability to create and configure Peering Settings for Network Services <br>
+🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Storage Account <br>
+🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
+🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
 
 Reference the module to a specific version (recommended):
 ```hcl
@@ -271,6 +272,8 @@ MonitoringSettings = {
 ```
 
 ## Example of Managed Network Variables
+
+If you mind using xManaged Network terraform module for your subscription, you need required to amend **tfvars** file convenient to your configuration detail. Below-stated file is an example of tfvars.
 
 ```hcl
 
