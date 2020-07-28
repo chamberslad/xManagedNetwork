@@ -49,9 +49,8 @@ You can create a virtual network with this module. Also you can manage these res
 
 |        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
-| `NOTE` | We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster.|
 
-
+We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster.|
 
 Reference the module to a specific version (recommended):
 ```hcl
