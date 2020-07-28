@@ -10,7 +10,7 @@
   ⚛️ 📄 🚀
 </h3>
 <h3 align="center">
-  This document will be covering combination of using Managed Network resources like Bastion Host, RouteTable(s), NSG(s), Peering(s), Service Endpoint(s), Delegation, Private Endpoint(s), Flow(s), Monitorings within the Terrraform
+This document will be covering combination of using Managed Network resources conjunction with Terrraform like Bastion Host, RouteTable(s), NSG(s), Peering(s), Service Endpoint(s), Delegation, Private Endpoint(s), Flow(s), Monitoring Option(s) and so forth.
 </h3>
 
 - [What’s In This Document 📖](#whats-in-this-document-)
