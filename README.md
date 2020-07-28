@@ -14,10 +14,13 @@
 </h3>
 
 - [What’s In This Document 🔰](#whats-in-this-document-)
-- [Inputs of Managed Virtual Network](#inputs-of-managed-virtual-network)
-- [Parameters of Managed Virtual Network](#parameters-of-managed-virtual-network)
+- [Inputs of Managed Network](#inputs-of-managed-network)
+- [Parameters of Managed Network](#parameters-of-managed-network)
   - [ServiceId](#serviceid)
   - [EnvironmentInstanceId](#environmentinstanceid)
+  - [InstanceId](#instanceid)
+  - [Region](#region)
+  - [Tags](#tags)
  
 ## What’s In This Document 🔰
 This document is intended  to explain custom Terraform Module for using Managed Network purpose. It will deploy fully configured and ready to use compliance virtual network for any purpose of using it. 
@@ -38,7 +41,7 @@ Reference the module to a specific version (recommended):
 ```hcl
 
 module "xManagedNetwork" {
-  source = "github.com/hasangural/managed-network"
+  source = "github.com/hasangural/xManagedNetwork"
   #version = "0.0.1"
   SubscriptionId       = var.SubscriptionId
   TenantId             = var.TenantId
@@ -56,7 +59,7 @@ module "xManagedNetwork" {
 }
 ```
 
-## Inputs of Managed Virtual Network 
+## Inputs of Managed Network 
 
 | Name                  | Type   | Default | Description                                                                                        |
 | --------------------- | ------ | ------- | -------------------------------------------------------------------------------------------------- |
@@ -66,7 +69,7 @@ module "xManagedNetwork" {
 | Region                | string | None    | (Required) This parameters is referred to Resource Location.                                       |
 | Tags                  | object | None    | (Required) This parameters is referred to Resource Tags.                                           |
 | vNetworkSettings      | object | None    | (Required) This parameters is referred to properties of Virtual Network.                           |
-| vNetworkSettings      | object | None    | (Required) This parameters is referred to properties of Subnet(s) on the Virtual Network.          |
+| vSubnetSettings       | object | None    | (Required) This parameters is referred to properties of Subnet(s) on the Virtual Network.          |
 | MonitoringSettings    | object | None    | (Required) This parameters is referred to properties of Monitoring Configuration.                  |
 
 |        |                                                                                            |
@@ -74,7 +77,7 @@ module "xManagedNetwork" {
 | `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. | # managed-network |
 
 
-## Parameters of Managed Virtual Network 
+## Parameters of Managed Network 
 
 ### ServiceId
 This parameters is referred to as the resource prefix and describes service names.
@@ -91,6 +94,20 @@ Example
 ServiceId = "xs101"
 ```
 ### EnvironmentInstanceId
+(Optional) This parameters is referred to as the ResourceInstanceId.   
+
+```hcl
+variable "ServiceId" {
+ description = "(Optional) This parameters is referred to as the ResourceInstanceId."
+}
+```
+
+Example
+
+```hcl
+InstanceId = "01"
+```
+### InstanceId
 This parameters is referred to as the environment Id which includes Env and InstanceId.
 
 ```hcl
@@ -103,4 +120,35 @@ Example
 
 ```hcl
 EnvironmentInstanceId = "d01"
+```
+### Region
+(Required) This parameters is referred to Resource Tags.
+
+```hcl
+variable "ServiceId" {
+ description = "(Required) This parameters is referred to Resource Tags.."
+}
+```
+
+Example
+
+```hcl
+Region = "West Europe"
+```
+### Tags
+(Required) This parameters is referred to Resource Location.
+
+```hcl
+variable "ServiceId" {
+ description = "(Required) This parameters is referred to Resource Location."
+}
+```
+
+Example
+
+```hcl
+Tags = {
+  account      = "x101"
+  team_project = "TBC"
+}
 ```
