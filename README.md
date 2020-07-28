@@ -21,6 +21,8 @@
   - [InstanceId](#instanceid)
   - [Region](#region)
   - [Tags](#tags)
+  - [vNetworkSettings](#vnetworksettings)
+  - [vSubnetsSettings](#vsubnetssettings)
  
 ## What’s In This Document 🔰
 This document is intended  to explain custom Terraform Module for using Managed Network purpose. It will deploy fully configured and ready to use compliance virtual network for any purpose of using it. 
@@ -151,4 +153,87 @@ Tags = {
   account      = "x101"
   team_project = "TBC"
 }
+```
+### vNetworkSettings
+(Required) This parameters is referred to properties of Virtual Network. 
+
+```hcl
+variable "vNetworkSettings" {
+ description = "(Required) This parameters is referred to properties of Virtual Network."
+}
+```
+
+Example
+
+```hcl
+vNetworkSettings = {
+  vNetRange = ["10.10.20.0/24"] #[You can add multiple Ranges##]#
+  vDNSSettings = {
+    RequiredDNS = false
+    vDNSServers = ["10.0.0.20", "10.10.20.30"] #[You can add multiple DNS Server for your requirments or you might disable it]#
+  }
+  vNetPeeringSettings = {
+    RequiredInternetAccess = false
+    RequiredNetworkAccess  = false
+  }
+  RequiredBastionHost = true
+}
+```
+
+### vSubnetsSettings
+(Required) This parameters is referred to properties of Virtual Network. 
+
+```hcl
+variable "vNetworkSettings" {
+ description = "(Required) This parameters is referred to properties of Virtual Network."
+}
+```
+
+Example
+
+```hcl
+
+vSubnetsSettings = {
+  "Subnet01" = {
+    Name                              = "BackendSubnet01"
+    Range                             = "10.10.20.0/28"
+    RequiredInernetAccess             = true
+    RequiredNetworkAccess             = true
+    RequiredSecurityGroup             = true
+    ServiceEndpoints                  = [] #[You can add multiple Service Endpoints for spesific Subnets "Microsoft.EventHub"]#
+    EnforcePrivateLinkEdpointPolicies = false
+    EnforcePrivateLinkServicePolicies = false
+    Delegation = {
+      Name = "AccessDelegation01"
+      ServiceDelegation = {
+        Name    = "Microsoft.ContainerInstance/containerGroups"
+        Actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      }
+    }
+    NSGIngress = [
+      # {"Name", "Priority", "Direction", "Action", "Protocol", "source_port_range(s)", "destination_port_range(s)", "source_address_prefix(s)", "destination_address_prefix(s)" },
+      ["DNS", "102", "Inbound", "Allow", "TCP", "53", "53", "*", "192.168.0.0/24"],
+      ["DNS", "102", "Inbound", "Allow", "TCP", "53", "53", "*", "192.168.1.21/32"],
+    ]
+    NSGEgress = [
+      # {"Name", "Priority", "Direction", "Action", "Protocol", "source_port_range(s)", "destination_port_range(s)", "source_address_prefix(s)", "destination_address_prefix(s)" },
+      # ["AllowAzureLoadBalancerInBound", "4095", "OutBound", "Allow", "*", "*", "*", "AzureLoadBalancer", "*"]
+    ]
+  },
+  "Subnet02" = {
+    Name                  = "AppSubnet01"
+    Range                 = "10.10.20.16/28"
+    RequiredInernetAccess = true
+    RequiredNetworkAccess = true
+    RequiredSecurityGroup = true
+  },
+  "Subnet03" = {
+    Name                  = "AppSubnet03"
+    Range                 = "10.10.20.32/28"
+    RequiredInernetAccess = true
+    RequiredNetworkAccess = true
+    RequiredSecurityGroup = true
+  }
+}
+
 ```
