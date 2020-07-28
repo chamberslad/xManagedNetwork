@@ -18,6 +18,17 @@ locals {
       ]
     }
   }
+  ServiceEndpoints = [
+      "Microsoft.AzureActiveDirectory", 
+      "Microsoft.AzureCosmosDB", 
+      "Microsoft.ContainerRegistry", 
+      "Microsoft.EventHub", 
+      "Microsoft.KeyVault", 
+      "Microsoft.ServiceBus", 
+      "Microsoft.Sql", 
+      "Microsoft.Storage",
+      "Microsoft.Web"
+    ]
 }
 
 ####> Creating Resource Group for Core Infrastructure <####
@@ -46,7 +57,7 @@ resource "azurerm_subnet" "coreInfra" {
   resource_group_name                            = azurerm_resource_group.coreInfra.name
   virtual_network_name                           = azurerm_virtual_network.coreInfra.name
   address_prefixes                               = [each.value.Range]
-  service_endpoints                              = lookup(each.value, "ServiceEndpoints", [])
+  service_endpoints                              = lookup(each.value, "ServiceEndpoints", []) == "All" ? local.ServiceEndpoints : lookup(each.value, "ServiceEndpoints", [])
   enforce_private_link_endpoint_network_policies = lookup(each.value, "EnforcePrivateLinkEdpointPolicies", null)
   enforce_private_link_service_network_policies  = lookup(each.value, "EnforcePrivateLinkServicePolicies", null)
 
