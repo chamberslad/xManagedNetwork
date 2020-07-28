@@ -41,5 +41,17 @@ variable "vSubnetsSettings" {
   default = ""
 }
 variable "MonitoringSettings" {
-  default = ""
+  default = {
+    DiagnosticSettings = {
+      StorageAccountLog = false
+      LogAnalyticsSpace = false
+    }
+    NetworkFlowSettings = {
+      Retention = false
+      Period    = 14
+    }
+    TrafficAnalyticsSettings = {
+      Enabled = false
+    }
+  }
 }
