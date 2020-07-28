@@ -13,8 +13,11 @@
   This document will be covering combination of using Managed Network resources like RouteTable(s), NSG(s), Peering(s), Flow(s), Monitorings within the Terrraform
 </h3>
 
-- [What’s In This Document](#whats-in-this-document)
-  - [Inputs of Managed Virtual Network](#inputs-of-managed-virtual-network)
+- [What’s In This Document 🔰](#whats-in-this-document-)
+- [Inputs of Managed Virtual Network](#inputs-of-managed-virtual-network)
+- [Parameters of Managed Virtual Network](#parameters-of-managed-virtual-network)
+  - [ServiceId](#serviceid)
+  - [EnvironmentInstanceId](#environmentinstanceid)
  
 ## What’s In This Document 🔰
 This document is intended  to explain custom Terraform Module for using Managed Network purpose. It will deploy fully configured and ready to use compliance virtual network for any purpose of using it. 
@@ -55,20 +58,49 @@ module "xManagedNetwork" {
 
 ## Inputs of Managed Virtual Network 
 
-| Name                   | Type   | Default |  Description |
-| --                     | --     | --      |    --        |
-| ServiceId              | string | None    |  (Required) This parameters is referred to as the resource prefix and describes service names. Example: Platform(P) - Business(B). |
-| EnvironmentInstanceId  | string | None    |  (Required) This parameters is referred to as the resource prefix and describes service names. Example: Platform(P) - Business(B). |
-| InstanceId             | string | None    |  (Required) This parameters is referred to as the resource prefix and describes service names. Example: Platform(P) - Business(B). |
-| Region                 | string | None    |  (Required) This parameters is referred to Resource Location. |
-| Tags                   | object | None    |  (Required) This parameters is referred to Resource Tags. |
-| vNetworkSettings       | object | None    |  (Required) This parameters is referred to Resource Tags. |
+| Name                  | Type   | Default | Description                                                                                        |
+| --------------------- | ------ | ------- | -------------------------------------------------------------------------------------------------- |
+| ServiceId             | string | None    | (Required) This parameters is referred to as the resource prefix and describes service names.      |
+| EnvironmentInstanceId | string | None    | (Required) This parameters is referred to as the environment Id which includes Env and InstanceId. |
+| InstanceId            | string | None    | (Optional) This parameters is referred to as the ResourceInstanceId.                               |
+| Region                | string | None    | (Required) This parameters is referred to Resource Location.                                       |
+| Tags                  | object | None    | (Required) This parameters is referred to Resource Tags.                                           |
+| vNetworkSettings      | object | None    | (Required) This parameters is referred to properties of Virtual Network.                           |
+| vNetworkSettings      | object | None    | (Required) This parameters is referred to properties of Subnet(s) on the Virtual Network.          |
+| MonitoringSettings    | object | None    | (Required) This parameters is referred to properties of Monitoring Configuration.                  |
+
+|        |                                                                                            |
+| ------ | ------------------------------------------------------------------------------------------ |
+| `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. | # managed-network |
 
 
+## Parameters of Managed Virtual Network 
 
-| | |
-|-|-|
-|`NOTE` |  You can follow your own entire range of `IP Addresses`. All of this completely an example.|# managed-network
-# managed-network
-# xManagedNetwork
-# xManagedNetwork
+### ServiceId
+This parameters is referred to as the resource prefix and describes service names.
+
+```hcl
+variable "ServiceId" {
+ description = "This parameters is referred to as the resource prefix and describes service names."
+}
+```
+
+Example
+
+```hcl
+ServiceId = "xs101"
+```
+### EnvironmentInstanceId
+This parameters is referred to as the environment Id which includes Env and InstanceId.
+
+```hcl
+variable "ServiceId" {
+ description = "This parameters is referred to as the environment Id which includes Env and InstanceId."
+}
+```
+
+Example
+
+```hcl
+EnvironmentInstanceId = "d01"
+```
