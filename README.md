@@ -10,7 +10,7 @@
   ⚛️ 📄 🚀
 </h3>
 <h3 align="center">
-  This document will be covering combination of using Managed Network resources like RouteTable(s), NSG(s), Peering(s), Flow(s), Monitorings within the Terrraform
+  This document will be covering combination of using Managed Network resources like Bastion Host, RouteTable(s), NSG(s), Peering(s), Service Endpoint(s), Delegation, Private Endpoint(s), Flow(s), Monitorings within the Terrraform
 </h3>
 
 - [What’s In This Document 📖](#whats-in-this-document-)
@@ -42,7 +42,7 @@ You can create a virtual network with this module. Also you can manage these res
 ☑️  Ability to deploy Managed Bastion Host on the Virtual Network <br>
 ☑️  Ability to control and manage DDoS protection attachment on the Virtual Network <br>
 ☑️  Ability to control and manage Network Flow Log(s) and Traffic Analytics on the Network Resources <br>
-🚩  Ability to create and configure Peering Settings for Network Services <br>
+🚩  Ability to create and configure Peering Settings for Platform Network Services <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Storage Account <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
