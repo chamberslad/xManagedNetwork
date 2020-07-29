@@ -87,7 +87,6 @@ module "xManagedNetwork" {
 | vSubnetSettings       | object | None    | (Required) This parameters is referred to properties of Subnet(s) on the Virtual Network.          |
 | MonitoringSettings    | object | None    | (Required) This parameters is referred to properties of Monitoring Configuration.                  |
 
-|        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
 | `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. | # managed-network |
 
