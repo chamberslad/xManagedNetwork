@@ -1,5 +1,5 @@
 resource "azurerm_route_table" "coreInfra" {
-  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if v.RequiredInernetAccess == true || v.RequiredNetworkAccess == true }
+  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if (lookup(v, "RequiredInternetAccess", true) == true || lookup(v, "RequiredNetworkAccess", true) == true) && (var.vNetworkSettings.vNetPeeringSettings.RequiredInternetAccess == true || var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess == true ) }
 
   name                          = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-rt-${lower(each.value)}"
   resource_group_name           = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-${var.InstanceId}"
@@ -13,7 +13,7 @@ resource "azurerm_route_table" "coreInfra" {
 }
 
 resource "azurerm_route" "Route-RFC-01" {
-  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if v.RequiredNetworkAccess == true}
+  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if lookup(v, "RequiredNetworkAccess", true) == true && var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess}
 
   name                = "Default-RFC-10-0-0-0-8"
   resource_group_name = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-${var.InstanceId}"
@@ -24,7 +24,7 @@ resource "azurerm_route" "Route-RFC-01" {
 }
 
 resource "azurerm_route" "Route-RFC-02" {
-  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if v.RequiredNetworkAccess == true}
+  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if lookup(v, "RequiredNetworkAccess", true) == true && var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess}
 
   name                = "Default-RFC-172-16-0-0-12"
   resource_group_name = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-${var.InstanceId}"
@@ -35,7 +35,7 @@ resource "azurerm_route" "Route-RFC-02" {
 }
 
 resource "azurerm_route" "Route-RFC-03" {
-  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if v.RequiredNetworkAccess == true}
+  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if lookup(v, "RequiredNetworkAccess", true) == true && var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess}
 
   name                = "Default-RFC-192-168-0-0-16"
   resource_group_name = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-${var.InstanceId}"
@@ -46,7 +46,7 @@ resource "azurerm_route" "Route-RFC-03" {
 }
 
 resource "azurerm_route" "Route-RFC-04" {
-  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if v.RequiredInernetAccess == true}
+  for_each = { for name, v in var.vSubnetsSettings : name => v.Name if lookup(v, "RequiredInternetAccess", true) == true && var.vNetworkSettings.vNetPeeringSettings.RequiredInternetAccess }
 
   name                = "Default-Internet"
   resource_group_name = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-${var.InstanceId}"

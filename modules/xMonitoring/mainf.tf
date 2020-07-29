@@ -2,7 +2,7 @@ locals {
   account_replication_type = "LRS"
 }
 
-####> Creating Resource Group for Managed Bastion Infrastructure <####
+####> Creating Storage Account for extracting logs for Managed Network Resource <####
 
 resource "azurerm_storage_account" "diag_storage" {
   count                     = var.MonitoringSettings.DiagnosticSettings.StorageAccountLog ? 1 : 0
@@ -32,11 +32,15 @@ resource "azurerm_storage_account" "diag_storage" {
 
 }
 
-resource azurerm_advanced_threat_protection diag_storage {
+####> Enabling Storage Account Threat Protection for Managed Network Resource <####
+
+resource "azurerm_advanced_threat_protection" "diag_storage" {
   count              = var.MonitoringSettings.DiagnosticSettings.StorageAccountLog ? 1 : 0
   target_resource_id = azurerm_storage_account.diag_storage[0].id
   enabled            = true
 }
+
+####> Enabling NSG Logs for Managed Network Resource <####
 
 resource "azurerm_monitor_diagnostic_setting" "nsg_logs" {
   for_each = var.MonitoringSettings.DiagnosticSettings.StorageAccountLog == true || var.MonitoringSettings.DiagnosticSettings.LogAnalyticsSpace == true ? var.NetworkSecurityGroups : {}
@@ -113,3 +117,4 @@ resource "azurerm_network_watcher_flow_log" "nsg_logs" {
   #}
 
 }
+

@@ -52,7 +52,7 @@ resource "azurerm_network_security_group" "this" {
 
 resource "azurerm_network_security_group" "coreInfra" {
 
-  for_each = { for name, v in var.vSubnetsSettings : name => v if v.RequiredSecurityGroup == true }
+  for_each = { for name, v in var.vSubnetsSettings : name => v if lookup(v, "RequiredSecurityGroup", true) }
 
   name                = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-nsg-${lower(each.value.Name)}"
   resource_group_name = "${var.ServiceId}-${var.EnvironmentInstanceId}-core-${var.InstanceId}"

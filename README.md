@@ -49,8 +49,8 @@ You can create a virtual network with this module. Also you can manage these res
 
 |        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
-
-We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster.|
+|        |                                                                                            |
+We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster.
 
 Reference the module to a specific version (recommended):
 ```hcl
@@ -194,13 +194,23 @@ vNetworkSettings = {
 ```
 
 ### vSubnetsSettings
-(Required) This parameters is referred to properties of Virtual Network. 
 
-```hcl
-variable "vNetworkSettings" {
- description = "(Required) This parameters is referred to properties of Virtual Network."
-}
-```
+For each subnet, create an object that contain the following fields (see example below)
+
+| input                             | Type   | Optional  | Comment                                                                                                      |
+| --------------------------------  | ------ | -------   | ------------------------------------------------------------------------------------------------------------ |
+| Name                              | string | mandatory | Name of the virtual subnet                                                                                   |
+| Range                             | string | mandatory | Address prefix for subnet                                                                                    |
+| RequiredInternetAccess            | bool   | optional  | Route Table is create depends on your selection on the block of vNetPeering Settings. If subnet does not require to connect Internet Access Service, you can declare value '*false*'               |
+| RequiredNetworkAccess             | bool   | optional  | If subnet does not require to connect Network Access Service, you can declare value '*false*'                |
+| RequiredSecurityGroup             | bool   | optional  | If subnet does not require Network Security Group, you can declare value '*false*'                           |
+| ServiceEndpoints                  | list   | optional  | Service endpoints for the subnet. You can set ["All"] or individual ["Microsoft.EventHub","Microsoft.Web"]   |
+| EnforcePrivateLinkEdpointPolicies | bool   | None      | Enable or Disable network policies for the private link endpoint on the subnet. Conflicts with '**EnforcePrivateLinkServicePolicies**' |
+| EnforcePrivateLinkServicePolicies | bool   | None      | Enable or Disable network policies for the private link service on the subnet. Conflicts with '**EnforcePrivateLinkEdpointPolicies**'  |
+| Delegation                        | list   | None      | Defines a subnet delegation feature. takes an object as described in the following example.                  |
+| NSGIngress                        | list   | None      | NSG is always created for each subnet. List will tune the NSG entries for inbound flows.                     |
+| NSGEgress                         | list   | None      | NSG is always created for each subnet. List will tune the NSG entries for outbound flows.                    |
+
 
 Example
 
@@ -236,16 +246,10 @@ vSubnetsSettings = {
   "Subnet02" = {
     Name                  = "AppSubnet01"
     Range                 = "10.10.20.16/28"
-    RequiredInernetAccess = true
-    RequiredNetworkAccess = true
-    RequiredSecurityGroup = true
   },
   "Subnet03" = {
     Name                  = "AppSubnet03"
     Range                 = "10.10.20.32/28"
-    RequiredInernetAccess = true
-    RequiredNetworkAccess = true
-    RequiredSecurityGroup = true
   }
 }
 

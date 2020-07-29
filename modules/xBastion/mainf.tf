@@ -1,5 +1,5 @@
 
-####> Creating Resource Group for Managed Bastion Infrastructure <####
+####> Creating Resource Group for Managed Bastion Resource <####
 
 resource "azurerm_resource_group" "ManagedBastion" {
   count = var.vNetworkSettings.RequiredBastionHost ? 1 : 0
@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "ManagedBastion" {
   location = var.Region
 }
 
-####> Creating Public IP for Managed Bastion Infrastructure <####
+####> Creating Public IP for Managed Bastion Resource <####
 
 resource "azurerm_public_ip" "ManagedBastion" {
   count = var.vNetworkSettings.RequiredBastionHost ? 1 : 0
@@ -20,6 +20,8 @@ resource "azurerm_public_ip" "ManagedBastion" {
   sku                 = "Standard" # Zone redundant
 
 }
+
+####> Creating Managed Bastion Resource for Managed Network <####
 
 resource "azurerm_bastion_host" "ManagedBastion" {
   name                = "${var.ServiceId}-${var.EnvironmentInstanceId}-mgmt-bst-${var.InstanceId}"

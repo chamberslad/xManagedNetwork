@@ -81,17 +81,15 @@ module "xMonitoring" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "NSG_Association" {
-  for_each = toset([for k, v in var.vSubnetsSettings : k if v.RequiredSecurityGroup == true])
+  for_each = toset([for k, v in var.vSubnetsSettings : k if lookup(v, "RequiredSecurityGroup", true)])
 
   subnet_id                 = module.xNetwork.Subnets[each.value].id
   network_security_group_id = module.xSecurityGroup.NSGs[each.value].id
 }
 
 resource "azurerm_subnet_route_table_association" "RouteTable_Association" {
-  for_each = toset([for k, v in var.vSubnetsSettings : k if v.RequiredInernetAccess == true && v.RequiredNetworkAccess])
+  for_each = toset([for k, v in var.vSubnetsSettings : k if lookup(v, "RequiredInternetAccess", true) == true && lookup(v, "RequiredNetworkAccess", true) == true && (var.vNetworkSettings.vNetPeeringSettings.RequiredInternetAccess || var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess)] )
 
   subnet_id      = module.xNetwork.Subnets[each.value].id
   route_table_id = module.xRouteTable.Tables[each.value].id
 }
-
-
