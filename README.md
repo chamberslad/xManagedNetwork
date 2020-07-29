@@ -48,8 +48,8 @@ You can create a virtual network with this module. Also you can manage these res
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
 
 | ------ | ------------------------------------------------------------------------------------------ |
-|        |                                                                                            |
-We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster.
+|        | We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster. |
+
 
 Reference the module to a specific version (recommended):
 ```hcl
@@ -88,7 +88,7 @@ module "xManagedNetwork" {
 
 |        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
-| `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. | # managed-network |
+| `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. |
 
 
 ## Parameters of Managed Network 🌪️
