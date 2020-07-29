@@ -97,12 +97,6 @@ module "xManagedNetwork" {
 ### ServiceId
 This parameters is referred to as the resource prefix and describes service names.
 
-```hcl
-variable "ServiceId" {
- description = "This parameters is referred to as the resource prefix and describes service names."
-}
-```
-
 Example
 
 ```hcl
@@ -111,17 +105,12 @@ ServiceId = "xs101"
 ### EnvironmentInstanceId
 (Optional) This parameters is referred to as the ResourceInstanceId.   
 
-```hcl
-variable "ServiceId" {
- description = "(Optional) This parameters is referred to as the ResourceInstanceId."
-}
-```
-
 Example
 
 ```hcl
 InstanceId = "01"
 ```
+
 ### InstanceId
 This parameters is referred to as the environment Id which includes Env and InstanceId.
 
@@ -138,12 +127,6 @@ EnvironmentInstanceId = "d01"
 ```
 ### Region
 (Required) This parameters is referred to Resource Tags.
-
-```hcl
-variable "ServiceId" {
- description = "(Required) This parameters is referred to Resource Tags.."
-}
-```
 
 Example
 
@@ -207,7 +190,7 @@ For each subnet, create an object that contain the following fields (see example
 | ServiceEndpoints                  | list   | optional  | Service endpoints for the subnet. You can set ["All"] or individual ["Microsoft.EventHub","Microsoft.Web"]   |
 | EnforcePrivateLinkEdpointPolicies | bool   | None      | Enable or Disable network policies for the private link endpoint on the subnet. Conflicts with '**EnforcePrivateLinkServicePolicies**' |
 | EnforcePrivateLinkServicePolicies | bool   | None      | Enable or Disable network policies for the private link service on the subnet. Conflicts with '**EnforcePrivateLinkEdpointPolicies**'  |
-| Delegation                        | list   | None      | Defines a subnet delegation feature. takes an object as described in the following example.                  |
+| Delegation                        | object | None      | Defines a subnet delegation feature. takes an object as described in the following example.                  |
 | NSGIngress                        | list   | None      | NSG is always created for each subnet. List will tune the NSG entries for inbound flows.                     |
 | NSGEgress                         | list   | None      | NSG is always created for each subnet. List will tune the NSG entries for outbound flows.                    |
 
