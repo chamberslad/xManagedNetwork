@@ -88,7 +88,7 @@ resource "azurerm_subnet_network_security_group_association" "NSG_Association" {
 }
 
 resource "azurerm_subnet_route_table_association" "RouteTable_Association" {
-  for_each = toset([for k, v in var.vSubnetsSettings : k if lookup(v, "RequiredInternetAccess", true) == true && lookup(v, "RequiredNetworkAccess", true) == true && (var.vNetworkSettings.vNetPeeringSettings.RequiredInternetAccess || var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess)] )
+  for_each = toset([for k, v in var.vSubnetsSettings : k if lookup(v, "RequiredInternetAccess", true) == true && lookup(v, "RequiredNetworkAccess", true) == true && (var.vNetworkSettings.vNetPeeringSettings.RequiredInternetAccess || var.vNetworkSettings.vNetPeeringSettings.RequiredNetworkAccess)])
 
   subnet_id      = module.xNetwork.Subnets[each.value].id
   route_table_id = module.xRouteTable.Tables[each.value].id

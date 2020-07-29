@@ -1,6 +1,6 @@
 variable "SubscriptionId" {
   description = "Please Provide your subscriptionId"
-  default     = "45d1c40a-a517-42ba-8f3a-f8aeee362ce6"
+  default     = "a25a223b-bbbd-4fbd-bb75-4fda84986cd5"
 }
 variable "TenantId" {
   description = "Please Provide your tenantId"
@@ -12,7 +12,7 @@ variable "ClientId" {
 }
 variable "SecretKey" {
   description = "Please Provide your secretKey"
-  default     = "iId72-2z--1PWtmz_ltiyutf6~Tdi7sy92"
+  default     = "rAyF6KD_~_ur5KU8.K_o6G8qHr_q-kmk3v"
 }
 variable "ServiceId" {
   description = "This parameters is referred to as the resource prefix and describes service names. Example: Platform(P) - Business(B)"
@@ -45,7 +45,7 @@ variable "vNetworkSettings" {
       vDNSServers = ["10.0.0.20", "10.10.20.30"] #[You can add multiple DNS Server for your requirments or you might disable it]#
     }
     vNetPeeringSettings = {
-      RequiredInternetAccess = false
+      RequiredInternetAccess = true
       RequiredNetworkAccess  = false
     }
     RequiredBastionHost = false
@@ -57,8 +57,8 @@ variable "vSubnetsSettings" {
       Name                              = "BackendSubnet01"
       Range                             = "10.10.20.0/28"
       ServiceEndpoints                  = ["All"] #[You can add multiple Service Endpoints for spesific Subnets "Microsoft.EventHub"]#
-      EnforcePrivateLinkEdpointPolicies = true
-      EnforcePrivateLinkServicePolicies = true
+      EnforcePrivateLinkEdpointPolicies = false
+      EnforcePrivateLinkServicePolicies = false
       Delegation = {
         Name = "AccessDelegation01"
         ServiceDelegation = {
@@ -76,15 +76,15 @@ variable "vSubnetsSettings" {
       ]
     },
     "Subnet02" = {
-      Name                   = "AppSubnet01"
-      Range                  = "10.10.20.16/28"
+      Name  = "AppSubnet01"
+      Range = "10.10.20.16/28"
       #RequiredInternetAccess = false
       #RequiredNetworkAccess  = false
       #RequiredSecurityGroup  = false
     },
     "Subnet03" = {
-      Name                   = "AppSubnet03"
-      Range                  = "10.10.20.32/28"
+      Name  = "AppSubnet03"
+      Range = "10.10.20.32/28"
     }
   }
 }
