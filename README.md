@@ -42,8 +42,8 @@ You can create a virtual network with this module. Also you can manage these res
 ☑️  Ability to deploy Managed Bastion Host on the Virtual Network <br>
 ☑️  Ability to control and manage DDoS protection attachment on the Virtual Network <br>
 ☑️  Ability to control and manage Network Flow Log(s) and Traffic Analytics on the Network Resources <br>
+☑️  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Storage Account <br>
 🚩  Ability to create and configure Peering Settings for Platform Network Services <br>
-🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Storage Account <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
 
@@ -82,8 +82,8 @@ module "xManagedNetwork" {
 | ServiceId             | string | None    | (Required) This parameters is referred to as the resource prefix and describes service names.      |
 | EnvironmentInstanceId | string | None    | (Required) This parameters is referred to as the environment Id which includes Env and InstanceId. |
 | InstanceId            | string | None    | (Optional) This parameters is referred to as the ResourceInstanceId.                               |
-| Region                | string | None    | (Required) This parameters is referred to Resource Location.                                       |
-| Tags                  | object | None    | (Required) This parameters is referred to Resource Tags.                                           |
+| Region                | string | None    | (Required) Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.|
+| Tags                  | object | None    | (Required) map of tags for the deployment.	                                                        |
 | vNetworkSettings      | object | None    | (Required) This parameters is referred to properties of Virtual Network.                           |
 | vSubnetSettings       | object | None    | (Required) This parameters is referred to properties of Subnet(s) on the Virtual Network.          |
 | MonitoringSettings    | object | None    | (Required) This parameters is referred to properties of Monitoring Configuration.                  |
@@ -103,8 +103,18 @@ Example
 ```hcl
 ServiceId = "xs101"
 ```
+
 ### EnvironmentInstanceId
 (Optional) This parameters is referred to as the ResourceInstanceId.   
+
+Example
+
+```hcl
+EnvironmentInstanceId = "01"
+```
+
+### InstanceId
+This parameters is referred to as the environment Id which includes Env and InstanceId.
 
 Example
 
@@ -112,36 +122,17 @@ Example
 InstanceId = "01"
 ```
 
-### InstanceId
-This parameters is referred to as the environment Id which includes Env and InstanceId.
-
-```hcl
-variable "ServiceId" {
- description = "This parameters is referred to as the environment Id which includes Env and InstanceId."
-}
-```
-
-Example
-
-```hcl
-EnvironmentInstanceId = "d01"
-```
 ### Region
-(Required) This parameters is referred to Resource Tags.
+(Required) Specifies the Azure location to deploy the resource. Changing this forces a new resource to be created.	
 
 Example
 
 ```hcl
 Region = "West Europe"
 ```
-### Tags
-(Required) This parameters is referred to Resource Location.
 
-```hcl
-variable "ServiceId" {
- description = "(Required) This parameters is referred to Resource Location."
-}
-```
+### Tags
+(Required) map of tags for the deployment
 
 Example
 
@@ -151,14 +142,16 @@ Tags = {
   team_project = "TBC"
 }
 ```
-### vNetworkSettings
-(Required) This parameters is referred to properties of Virtual Network. 
 
-```hcl
-variable "vNetworkSettings" {
- description = "(Required) This parameters is referred to properties of Virtual Network."
-}
-```
+### vNetworkSettings
+(Required) Configuration object describing the networking configuration. (see example below)
+
+| input                             | Type   | Optional  | Comment                                                                                                      |
+| --------------------------------  | ------ | -------   | ------------------------------------------------------------------------------------------------------------ |
+| vNetRange                         | list   | mandatory | Address Prefixes for the subnets                                                                             |
+| vDNSSettings                      | object | mandatory | You can provide list of DNS Servers, if you are not provided, uses the default Azure DNS                     |
+| vNetPeeringSettings               | object | mandatory | Address prefix for subnet                                                                                    |
+| RequiredBastionHost               | bool   | mandatory | You can easily enabling Azure Bastion Service for Managed Network Resources                                  |
 
 Example
 
@@ -185,7 +178,7 @@ For each subnet, create an object that contain the following fields (see example
 | --------------------------------  | ------ | -------   | ------------------------------------------------------------------------------------------------------------ |
 | Name                              | string | mandatory | Name of the virtual subnet                                                                                   |
 | Range                             | string | mandatory | Address prefix for subnet                                                                                    |
-| RequiredInternetAccess            | bool   | optional  | Route Table is create depends on your selection on the block of vNetPeering Settings. If subnet does not require to connect Internet Access Service, you can declare value '*false*'               |
+| RequiredInternetAccess            | bool   | optional  | Route Table is create depends on your selection on the block of vNetPeering Settings. If subnet does not require to connect Internet Access Service, you can declare value '*false*'|
 | RequiredNetworkAccess             | bool   | optional  | If subnet does not require to connect Network Access Service, you can declare value '*false*'                |
 | RequiredSecurityGroup             | bool   | optional  | If subnet does not require Network Security Group, you can declare value '*false*'                           |
 | ServiceEndpoints                  | list   | optional  | Service endpoints for the subnet. You can set ["All"] or individual ["Microsoft.EventHub","Microsoft.Web"]   |
@@ -338,16 +331,10 @@ vSubnetsSettings = {
   "Subnet02" = {
     Name                  = "AppSubnet01"
     Range                 = "10.10.20.16/28"
-    RequiredInernetAccess = true
-    RequiredNetworkAccess = true
-    RequiredSecurityGroup = true
   },
   "Subnet03" = {
     Name                  = "AppSubnet03"
     Range                 = "10.10.20.32/28"
-    RequiredInernetAccess = true
-    RequiredNetworkAccess = true
-    RequiredSecurityGroup = true
   }
 }
 
