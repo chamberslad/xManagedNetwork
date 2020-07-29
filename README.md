@@ -14,7 +14,6 @@ This document will be covering combination of using Managed Network resources co
 </h3>
 
 ---
-
 - [What’s In This Document 📖](#whats-in-this-document-)
 - [Inputs of Managed Network](#inputs-of-managed-network)
 - [Parameters of Managed Network 🌪️](#parameters-of-managed-network-️)
@@ -28,6 +27,7 @@ This document will be covering combination of using Managed Network resources co
   - [MonitoringSettings](#monitoringsettings)
 - [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
  
+--- 
 ## What’s In This Document 📖
 This document is intended  to explain custom Terraform Module for using Managed Network purpose. It will deploy fully configured and ready to use consistent virtual network for any purpose of using it. 
 
