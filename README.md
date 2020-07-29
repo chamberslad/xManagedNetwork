@@ -47,7 +47,6 @@ You can create a virtual network with this module. Also you can manage these res
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
 
-|        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
 |        |                                                                                            |
 We need to start by cloning the xManagedNetwork repository. It contains all the bash scripts and cluster definiation which we needed to set up a cluster.
@@ -87,6 +86,7 @@ module "xManagedNetwork" {
 | vSubnetSettings       | object | None    | (Required) This parameters is referred to properties of Subnet(s) on the Virtual Network.          |
 | MonitoringSettings    | object | None    | (Required) This parameters is referred to properties of Monitoring Configuration.                  |
 
+|        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
 | `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. | # managed-network |
 
