@@ -26,6 +26,8 @@ This document will be covering combination of using Managed Network resources co
   - [vSubnetsSettings](#vsubnetssettings)
   - [MonitoringSettings](#monitoringsettings)
 - [Get up and running in a minute 🚀](#get-up-and-running-in-a-minute-)
+- [</details>](#details)
+- [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
  
 --- 
 ## What’s In This Document 📖
@@ -280,7 +282,7 @@ We need to start by cloning the xManagedNetwork repository. It contains all the 
    ```bash
    terraform init
    ```
-  <details>
+<details>
   <summary>Click to expand - see output of script</summary>
 
   ```bash
@@ -309,8 +311,10 @@ We need to start by cloning the xManagedNetwork repository. It contains all the 
     "If you ever set or change modules or backend configuration for Terraform,"      
     "rerun this command to reinitialize your working directory. If you forget, other"
     "commands will detect it and remind you to do so if necessary."
-      ```
-  </details>
+
+  ```
+
+</details>
 ---
 
 ## Example of Managed Network Variables 📜 
