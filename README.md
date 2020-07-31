@@ -16,7 +16,6 @@ This document will be covering combination of using Managed Network resources co
 ---
 - [What’s In This Document 📖](#whats-in-this-document-)
 - [Inputs of Managed Network](#inputs-of-managed-network)
-- [## Get Up and Running in a minute 🚀](#h2-idget-up-and-running-in-a-minute--31get-up-and-running-in-a-minute-h2)
 - [Parameters of Managed Network 🌪️](#parameters-of-managed-network-️)
   - [ServiceId](#serviceid)
   - [EnvironmentInstanceId](#environmentinstanceid)
@@ -26,6 +25,7 @@ This document will be covering combination of using Managed Network resources co
   - [vNetworkSettings](#vnetworksettings)
   - [vSubnetsSettings](#vsubnetssettings)
   - [MonitoringSettings](#monitoringsettings)
+- [## Get Up and Running in a minute 🚀](#h2-idget-up-and-running-in-a-minute--82get-up-and-running-in-a-minute-h2)
 - [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
  
 --- 
@@ -49,7 +49,6 @@ You can create a virtual network with this module. Also you can manage these res
 🚩  Ability to create and configure Peering Settings for Platform Network Services <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
-
 
 Reference the module to a specific version (recommended):
 ```hcl
@@ -89,19 +88,6 @@ module "xManagedNetwork" {
 |        |                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------ |
 | `NOTE` | You can follow your own entire range of `IP Addresses`. All of this completely an example. |
-
-
-## Get Up and Running in a minute 🚀 
----
-We need to start by cloning the xManagedNetwork repository. It contains all the terraform files which needed to set up a new managed virtual network.
-
-1. **Clone the xManaged Network Repository - example branch.**
-
-   ```shell
-   npm install -g gatsby-cli
-
-   ```
-
 
 
 ---
@@ -274,6 +260,29 @@ MonitoringSettings = {
   }
 
 ```
+
+
+
+
+
+
+## Get Up and Running in a minute 🚀 
+---
+We need to start by cloning the xManagedNetwork repository. It contains all the terraform files which needed to set up a new managed virtual network.
+
+1. **Clone the xManaged Network Repository - example branch.**
+
+   ```shell
+   git clone -b example https://github.com/hasangural/xManagedNetwork.git
+
+   or 
+
+   curl ###
+
+   ```
+
+---
+
 
 ## Example of Managed Network Variables 📜 
 
