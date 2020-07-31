@@ -25,8 +25,8 @@ This document will be covering combination of using Managed Network resources co
   - [vNetworkSettings](#vnetworksettings)
   - [vSubnetsSettings](#vsubnetssettings)
   - [MonitoringSettings](#monitoringsettings)
-- [## Get Up and Running in a minute 🚀](#h2-idget-up-and-running-in-a-minute--82get-up-and-running-in-a-minute-h2)
 - [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
+- [Get Up and Running in a minute 🚀](#get-up-and-running-in-a-minute-)
  
 --- 
 ## What’s In This Document 📖
@@ -266,24 +266,6 @@ MonitoringSettings = {
 
 
 
-## Get Up and Running in a minute 🚀 
----
-We need to start by cloning the xManagedNetwork repository. It contains all the terraform files which needed to set up a new managed virtual network.
-
-1. **Clone the xManaged Network Repository - example branch.**
-
-   ```shell
-   git clone -b example https://github.com/hasangural/xManagedNetwork.git
-
-   or 
-
-   curl ###
-
-   ```
-
----
-
-
 ## Example of Managed Network Variables 📜 
 
 If you mind using xManaged Network terraform module for your subscription, you need required to amend **tfvars** file convenient to your configuration detail. Below-stated file is an example of tfvars.
@@ -376,3 +358,21 @@ MonitoringSettings = {
   }
 
 ```
+
+
+---
+## Get Up and Running in a minute 🚀 
+We need to start by cloning the xManagedNetwork repository. It contains all the terraform files which needed to set up a new managed virtual network.
+
+1. **Clone the xManaged Network Repository - example branch.**
+
+   ```shell
+   git clone -b example https://github.com/hasangural/xManagedNetwork.git
+
+   or 
+
+
+   ```
+
+---
+
