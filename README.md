@@ -182,11 +182,11 @@ For each subnet, create an object that contain the following fields (see example
 | RequiredNetworkAccess             | bool   | optional  | If subnet does not require to connect Network Access Service, you can declare value '*false*'                |
 | RequiredSecurityGroup             | bool   | optional  | If subnet does not require Network Security Group, you can declare value '*false*'                           |
 | ServiceEndpoints                  | list   | optional  | Service endpoints for the subnet. You can set ["All"] or individual ["Microsoft.EventHub","Microsoft.Web"]   |
-| EnforcePrivateLinkEdpointPolicies | bool   | None      | Enable or Disable network policies for the private link endpoint on the subnet. Conflicts with '**EnforcePrivateLinkServicePolicies**' |
-| EnforcePrivateLinkServicePolicies | bool   | None      | Enable or Disable network policies for the private link service on the subnet. Conflicts with '**EnforcePrivateLinkEdpointPolicies**'  |
-| Delegation                        | object | None      | Defines a subnet delegation feature. takes an object as described in the following example.                  |
-| NSGIngress                        | list   | None      | NSG is always created for each subnet. List will tune the NSG entries for inbound flows.                     |
-| NSGEgress                         | list   | None      | NSG is always created for each subnet. List will tune the NSG entries for outbound flows.                    |
+| EnforcePrivateLinkEdpointPolicies | bool   | optional  | Enable or Disable network policies for the private link endpoint on the subnet. Conflicts with '**EnforcePrivateLinkServicePolicies**' |
+| EnforcePrivateLinkServicePolicies | bool   | optional  | Enable or Disable network policies for the private link service on the subnet. Conflicts with '**EnforcePrivateLinkEdpointPolicies**'  |
+| Delegation                        | object | optional  | Defines a subnet delegation feature. takes an object as described in the following example.                  |
+| NSGIngress                        | list   | optional  | NSG is always created for each subnet. List will tune the NSG entries for inbound flows.                     |
+| NSGEgress                         | list   | optional  | NSG is always created for each subnet. List will tune the NSG entries for outbound flows.                    |
 
 
 Example
