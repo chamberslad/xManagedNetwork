@@ -281,39 +281,39 @@ We need to start by cloning the xManagedNetwork repository. It contains all the 
    ```bash
    terraform init
    ```
-<details>
-  <summary>Click to expand - see output of script</summary>
+    <details>
+      <summary>Click to expand - see output of script</summary>
 
-  ```bash
-  # You should see example of output as below-stated.
-    "❯ terraform init"
+      ```bash
+      # You should see example of output as below-stated.
+        "❯ terraform init"
 
-    "Initializing modules..."
-    "- xBastion in modules\xBastion"
-    "- xMonitoring in modules\xMonitoring"
-    "- xNetwork in modules\xNetwork"
-    "- xRouteTable in modules\xRouteTable"
-    "- xSecurityGroup in modules\xSecurityGroup"
+        "Initializing modules..."
+        "- xBastion in modules\xBastion"
+        "- xMonitoring in modules\xMonitoring"
+        "- xNetwork in modules\xNetwork"
+        "- xRouteTable in modules\xRouteTable"
+        "- xSecurityGroup in modules\xSecurityGroup"
 
-    "Initializing the backend..."
+        "Initializing the backend..."
 
-    "Initializing provider plugins..."
-    "- Checking for available provider plugins..."
-    "- Downloading plugin for provider 'azurerm' (hashicorp/azurerm) 2.15.0..."
+        "Initializing provider plugins..."
+        "- Checking for available provider plugins..."
+        "- Downloading plugin for provider 'azurerm' (hashicorp/azurerm) 2.15.0..."
 
-    "Terraform has been successfully initialized!"
+        "Terraform has been successfully initialized!"
 
-    "You may now begin working with Terraform. Try running 'terraform plan' to see"  
-    "any changes that are required for your infrastructure. All Terraform commands"
-    "should now work."
+        "You may now begin working with Terraform. Try running 'terraform plan' to see"  
+        "any changes that are required for your infrastructure. All Terraform commands"
+        "should now work."
 
-    "If you ever set or change modules or backend configuration for Terraform,"      
-    "rerun this command to reinitialize your working directory. If you forget, other"
-    "commands will detect it and remind you to do so if necessary."
+        "If you ever set or change modules or backend configuration for Terraform,"      
+        "rerun this command to reinitialize your working directory. If you forget, other"
+        "commands will detect it and remind you to do so if necessary."
 
-  ```
+      ```
 
-</details>
+    </details>
 
 3. **Terraform Plan**
 
