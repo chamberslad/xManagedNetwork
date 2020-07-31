@@ -25,8 +25,7 @@ This document will be covering combination of using Managed Network resources co
   - [vNetworkSettings](#vnetworksettings)
   - [vSubnetsSettings](#vsubnetssettings)
   - [MonitoringSettings](#monitoringsettings)
-- [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
-- [Get Up and Running in a minute 🚀](#get-up-and-running-in-a-minute-)
+- [Get up and running in a minute 🚀](#get-up-and-running-in-a-minute-)
  
 --- 
 ## What’s In This Document 📖
@@ -261,10 +260,58 @@ MonitoringSettings = {
 
 ```
 
+---
 
+## Get up and running in a minute 🚀 
+We need to start by cloning the xManagedNetwork repository. It contains all the terraform files which needed to set up a new managed virtual network.
 
+1. **Clone the xManaged Network Repository - example branch.**
 
+   ```bash
+   git clone -b example https://github.com/hasangural/xManagedNetwork.git
 
+   or 
+
+   ```
+2. **Initialize Terraform**
+
+   Get your Gatsby blog set up in a single command:
+
+   ```bash
+   terraform init
+   ```
+  <details>
+  <summary>Click to expand - see output of script</summary>
+
+  ```bash
+  # You should see example of output as below-stated.
+    "❯ terraform init"
+
+    "Initializing modules..."
+    "- xBastion in modules\xBastion"
+    "- xMonitoring in modules\xMonitoring"
+    "- xNetwork in modules\xNetwork"
+    "- xRouteTable in modules\xRouteTable"
+    "- xSecurityGroup in modules\xSecurityGroup"
+
+    "Initializing the backend..."
+
+    "Initializing provider plugins..."
+    "- Checking for available provider plugins..."
+    "- Downloading plugin for provider 'azurerm' (hashicorp/azurerm) 2.15.0..."
+
+    "Terraform has been successfully initialized!"
+
+    "You may now begin working with Terraform. Try running 'terraform plan' to see"  
+    "any changes that are required for your infrastructure. All Terraform commands"
+    "should now work."
+
+    "If you ever set or change modules or backend configuration for Terraform,"      
+    "rerun this command to reinitialize your working directory. If you forget, other"
+    "commands will detect it and remind you to do so if necessary."
+      ```
+  </details>
+---
 
 ## Example of Managed Network Variables 📜 
 
@@ -359,20 +406,4 @@ MonitoringSettings = {
 
 ```
 
-
----
-## Get Up and Running in a minute 🚀 
-We need to start by cloning the xManagedNetwork repository. It contains all the terraform files which needed to set up a new managed virtual network.
-
-1. **Clone the xManaged Network Repository - example branch.**
-
-   ```shell
-   git clone -b example https://github.com/hasangural/xManagedNetwork.git
-
-   or 
-
-
-   ```
-
----
 
