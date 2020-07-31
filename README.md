@@ -26,7 +26,6 @@ This document will be covering combination of using Managed Network resources co
   - [vSubnetsSettings](#vsubnetssettings)
   - [MonitoringSettings](#monitoringsettings)
 - [Get up and running in a minute 🚀](#get-up-and-running-in-a-minute-)
-- [</details>](#details)
 - [Example of Managed Network Variables 📜](#example-of-managed-network-variables-)
  
 --- 
@@ -277,7 +276,7 @@ We need to start by cloning the xManagedNetwork repository. It contains all the 
    ```
 2. **Initialize Terraform**
 
-   Get your Gatsby blog set up in a single command:
+   The terraform init command is used to initialize a working directory containing Terraform configuration files and remote  modules.
 
    ```bash
    terraform init
@@ -315,6 +314,41 @@ We need to start by cloning the xManagedNetwork repository. It contains all the 
   ```
 
 </details>
+
+3. **Terraform Plan**
+
+   The terraform plan command is used to create an execution plan.The plan command lets you see what Terraform will do before actually doing it
+
+   ```bash
+   terraform plan
+   ```
+    <details>
+      <summary>Click to expand - see output of script</summary>
+
+      ```bash
+      # You should see example of output as below-stated.
+        "❯ terraform plan"
+
+        "An execution plan has been generated and is shown below."
+        "Resource actions are indicated with the following symbols:"
+        "  ~ update in-place"
+
+        "Terraform will perform the following actions:"
+
+        "  # module.xNetwork.azurerm_subnet.coreInfra['Subnet01'] will be updated in-place"
+        "  ~ resource 'azurerm_subne' "coreInfra" {"
+        "        address_prefix                                 = '10.10.20.0/28'"
+        "        address_prefixes                               = ["
+        "            '10.10.20.0/28',"
+        "        ]"
+        "        enforce_private_link_endpoint_network_policies = false"
+        "        enforce_private_link_service_network_policies  = false"
+
+      ```
+
+    </details>
+
+
 ---
 
 ## Example of Managed Network Variables 📜 
