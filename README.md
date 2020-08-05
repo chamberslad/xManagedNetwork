@@ -3,7 +3,7 @@
   </a>
 </p>
 <h1 align="center">
-  Managed Virtual Network Module of Common Platform Services within Terraform ⛵
+  Managed Virtual Network Module of x Platform Services within Terraform ⛵
 </h1>
 
 <h3 align="center">
