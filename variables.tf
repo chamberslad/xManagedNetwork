@@ -16,7 +16,7 @@ variable "SecretKey" {
 }
 variable "ServiceId" {
   description = "This parameters is referred to as the resource prefix and describes service names. Example: Platform(P) - Business(B)"
-  default     = "lp101"
+  default     = "sp101"
 }
 variable "EnvironmentInstanceId" {
   description = "This parameters is referred to as the resource prefix and describes service names. Example: Platform(P) - Business(B)This parameters is referred to as the resource EnvironmentInstanceId which includes Env and InstanceId. Example: p01, t01"
@@ -68,7 +68,8 @@ variable "vSubnetsSettings" {
       }
       NSGIngress = [
         # {"Name", "Priority", "Direction", "Action", "Protocol", "source_port_range(s)", "destination_port_range(s)", "source_address_prefix(s)", "destination_address_prefix(s)" },
-        ["DNS", "102", "Inbound", "Allow", "TCP", "53", "53", "*", "*"],
+        [ "HTTP-HTTPS", "102", "Inbound", "Allow", "TCP", ["443","80"], "80", "*", "*" ],
+        [ "DNS", "103", "Inbound", "Allow", "TCP", "*", "*", "*", "*" ]
       ]
       NSGEgress = [
         # {"Name", "Priority", "Direction", "Action", "Protocol", "source_port_range(s)", "destination_port_range(s)", "source_address_prefix(s)", "destination_address_prefix(s)" },

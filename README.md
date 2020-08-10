@@ -39,8 +39,8 @@ You can create a virtual network with this module. Also you can manage these res
 ☑️  Ability to control creating NSG(s) per subnet-level on the Virtual Network <br>
 ☑️  Ability to control and Ingress and Egress Rules of NSG per subnet-level on the Virtual Network <br>
 ☑️  Ability to control creating Routes in UDR(s) for aligning Transit Network Service and Internet Access Service <br>
-☑️  Ability to control creating Service Endpoint(s) per subnet-level on the Virtual Network <br>
-☑️  Ability to control creating Delegation per subnet-level on the Virtual Network <br>
+☑️  Ability to control creating Service Link(s) per subnet-level on the Virtual Network <br>
+☑️  Ability to control creating Subnet Delegation per subnet-level on the Virtual Network <br>
 ☑️  Ability to control creating Private Endpoint Policies per subnet-level on the Virtual Network <br>
 ☑️  Ability to deploy Managed Bastion Host on the Virtual Network <br>
 ☑️  Ability to control and manage DDoS protection attachment on the Virtual Network <br>
@@ -50,6 +50,7 @@ You can create a virtual network with this module. Also you can manage these res
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Event Hub <br>
 🚩  Ability to control and configure Diagnostics Logging Profile for Managed Network Resources to Log Analytics <br>
 
+--- 
 Reference the module to a specific version (recommended):
 ```hcl
 
@@ -72,6 +73,7 @@ module "xManagedNetwork" {
 }
 ```
 
+--- 
 ## Inputs of Managed Network 
 
 | Name                  | Type   | Default | Description                                                                                        |
@@ -101,7 +103,7 @@ This parameters is referred to as the resource prefix and describes service name
 Example
 
 ```hcl
-ServiceId = "xs101"
+ServiceId = "b101"
 ```
 
 ### EnvironmentInstanceId
@@ -110,7 +112,7 @@ ServiceId = "xs101"
 Example
 
 ```hcl
-EnvironmentInstanceId = "01"
+EnvironmentInstanceId = "d01"
 ```
 
 ### InstanceId
@@ -138,7 +140,7 @@ Example
 
 ```hcl
 Tags = {
-  account      = "x101"
+  account      = "b101"
   team_project = "TBC"
 }
 ```
@@ -234,12 +236,6 @@ vSubnetsSettings = {
 
 ### MonitoringSettings
 This parameters is referred to properties of Monitoring Configuration.
-
-```hcl
-variable "MonitoringSettings" {
- description = "This parameters is referred to properties of Monitoring Configuration.."
-}
-```
 
 Example
 
